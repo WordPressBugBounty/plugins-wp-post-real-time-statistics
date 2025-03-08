@@ -2,8 +2,8 @@
 Contributors: osamaesh
 Tags:  statistics, stats analytics, counter, traffic, hits
 Requires at least: 4.1
-Tested up to: 6.6.1
-Stable tag: 2.8
+Tested up to: 6.7.2
+Stable tag: 2.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -40,6 +40,9 @@ The plugin is simple to install:
 You can find full details of installing a plugin on the [plugin installation page](http://goo.gl/nf3WcU).
 
 == Changelog ==
+
+= 2.9 =
+1. including some commonly known bots and crawlers
 
 = 2.8 =
 1. check compatibility issues

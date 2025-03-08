@@ -131,14 +131,29 @@
         public static function isBot ($user_agent)
         {
             $bots = [
-                0 => 'bot',
-                1 => 'spider',
-                2 => 'crawl',
-                3 => 'google',
-                4 => 'msn',
-                5 => 'aol',
-                6 => 'yahoo',
-            ];
+					0  => 'bot',
+					1  => 'spider',
+					2  => 'crawl',
+					3  => 'google',
+					4  => 'msn',
+					5  => 'aol',
+					6  => 'yahoo',
+					7  => 'bingbot',         // Bing
+					8  => 'baiduspider',     // Baidu
+					9  => 'yandexbot',       // Yandex
+					10 => 'facebookexternalhit', // Facebook
+					11 => 'twitterbot',      // Twitter
+					12 => 'duckduckbot',     // DuckDuckGo
+					13 => 'ahrefsbot',       // Ahrefs SEO
+					14 => 'semrushbot',      // Semrush SEO
+					15 => 'mj12bot',         // Majestic
+					16 => 'sogou',           // Sogou (China)
+					17 => 'slurp',           // Yahoo’s older crawler
+					18 => 'archive.org_bot', // Internet Archive
+					19 => 'ia_archiver',     // Internet Archive
+					20 => 'rogerbot',        // Moz
+				];
+
 
             $user_agent = strtolower ($user_agent);
 
