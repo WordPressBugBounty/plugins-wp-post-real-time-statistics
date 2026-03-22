@@ -1,27 +1,32 @@
-=== WP Post Statistics (Visitors & Visits Counter) ===
+=== Real-Time Post Statistics for WordPress ===
 Contributors: osamaesh
-Tags:  statistics, stats analytics, counter, traffic, hits
+Tags: statistics, stats analytics, counter, traffic, hits
 Requires at least: 4.1
-Tested up to: 6.7.2
-Stable tag: 2.9
+Tested up to: 6.9.4
+Stable tag: 3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 
-a simple tool to know your post statistics
+A lightweight and simple tool to track your post statistics with real insights.
 
 == Description ==
-a simple tool to know your post statistics (With GEO locations)
-	
+WP Post Statistics is a simple and efficient plugin that helps you track and understand your post performance with clear and useful statistics, including GEO location data.
+
+The plugin gives you a complete overview of how your content is performing, allowing you to monitor visits, visitors, and traffic sources without any complex setup. It is designed to be fast, accurate, and easy to use.
+
 <strong>Single Post Statistics includes: </strong>
 <ul>
-<li>Comprehensive overview page (Dashboard), including country stats, cities, visitors, visits</li>
-<li>compatible with any post type</li>
-<li>Visits & Visitors, see how many hits your site get in any period</li>
-<li>see how many people are viewing your site posts by weekly statistics</li>
-<li>GEO locations</li>
+<li>Comprehensive overview dashboard with countries, cities, visitors, and visits</li>
+<li>Compatible with all post types</li>
+<li>Track visits and unique visitors over any selected period</li>
+<li>Weekly statistics to monitor content performance trends</li>
+<li>GEO location tracking (countries and cities)</li>
 </ul>
 
+The plugin works instantly after activation and stores all data locally without relying on external services, making it reliable and privacy-friendly.
+
+Perfect for bloggers, content creators, and website owners who want a clear and simple way to monitor their content performance.
 
 == Screenshots ==
 1. Posts statistics page
@@ -40,6 +45,9 @@ The plugin is simple to install:
 You can find full details of installing a plugin on the [plugin installation page](http://goo.gl/nf3WcU).
 
 == Changelog ==
+
+= 3.1 =
+1. check compatibility issues
 
 = 2.9 =
 1. including some commonly known bots and crawlers

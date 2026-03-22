@@ -1,9 +1,9 @@
 <?php
     /*
-    Plugin Name: WP Post Statistics (Visitors & Visits Counter)
+    Plugin Name: Real-Time Post Statistics for WordPress
     Plugin URI: https://www.plugins-market.com/product/visitor-statistics-pro/
     Description: Hits counter that shows analytical numbers of your WordPress site visitors and hits
-    Version: 2.9
+    Version: 3.1
     Author: osamaesh
     Author URI: https://www.plugins-market.com
     */
