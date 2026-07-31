@@ -3,7 +3,7 @@
     Plugin Name: Real-Time Post Statistics for WordPress
     Plugin URI: https://www.plugins-market.com/product/visitor-statistics-pro/
     Description: Hits counter that shows analytical numbers of your WordPress site visitors and hits
-    Version: 3.1
+    Version: 3.2
     Author: osamaesh
     Author URI: https://www.plugins-market.com
     */
@@ -84,18 +84,39 @@
     });
 
     add_action ('wp_ajax_poststats_first_chart', function () {
+        if (!current_user_can('edit_posts')) {
+            wp_send_json_error(array('message' => 'Forbidden: insufficient capability'), 403);
+        }
+        if (!check_ajax_referer('poststats_ajax', 'nonce', false)) {
+            wp_send_json_error(array('message' => 'Invalid or missing nonce'), 403);
+        }
+
         echo json_encode (PostStatsHelper::getDataForFirstChart ($_POST));
 
         wp_die ();
     });
 
     add_action ('wp_ajax_poststats_countries_table', function () {
+        if (!current_user_can('edit_posts')) {
+            wp_send_json_error(array('message' => 'Forbidden: insufficient capability'), 403);
+        }
+        if (!check_ajax_referer('poststats_ajax', 'nonce', false)) {
+            wp_send_json_error(array('message' => 'Invalid or missing nonce'), 403);
+        }
+
         echo json_encode (PostStatsHelper::getDataCountriesTable ($_POST));
 
         wp_die ();
     });
 
     add_action ('wp_ajax_poststats_cities_table', function () {
+        if (!current_user_can('edit_posts')) {
+            wp_send_json_error(array('message' => 'Forbidden: insufficient capability'), 403);
+        }
+        if (!check_ajax_referer('poststats_ajax', 'nonce', false)) {
+            wp_send_json_error(array('message' => 'Invalid or missing nonce'), 403);
+        }
+
         echo json_encode (PostStatsHelper::getDataCitiesTable ($_POST));
 
         wp_die ();

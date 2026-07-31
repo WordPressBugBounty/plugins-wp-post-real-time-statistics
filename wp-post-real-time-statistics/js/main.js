@@ -166,6 +166,7 @@
             dataType  : 'json',
             data      : {
                 action      : 'poststats_cities_table',
+                nonce       : POSTSTATS_NONCE,
                 from        : $modal.find("input[id^='poststats_tab_2_from_']").val(),
                 to          : $modal.find("input[id^='poststats_tab_2_to_']").val(),
                 page        : page,
@@ -218,6 +219,7 @@
             dataType  : 'json',
             data      : {
                 action : 'poststats_first_chart',
+                nonce  : POSTSTATS_NONCE,
                 from   : $modal.find("input[id^='poststats_tab_1_from_']").val(),
                 to     : $modal.find("input[id^='poststats_tab_1_to_']").val(),
                 post_id: post_id
@@ -284,6 +286,7 @@
             dataType  : 'json',
             data      : {
                 action : 'poststats_countries_table',
+                nonce  : POSTSTATS_NONCE,
                 from   : $modal.find("input[id^='poststats_tab_2_from_']").val(),
                 to     : $modal.find("input[id^='poststats_tab_2_to_']").val(),
                 post_id: post_id,

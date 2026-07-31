@@ -2,8 +2,8 @@
 Contributors: osamaesh
 Tags: statistics, stats analytics, counter, traffic, hits
 Requires at least: 4.1
-Tested up to: 6.9.4
-Stable tag: 3.1
+Tested up to: 7.0.2
+Stable tag: 3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -45,6 +45,13 @@ The plugin is simple to install:
 You can find full details of installing a plugin on the [plugin installation page](http://goo.gl/nf3WcU).
 
 == Changelog ==
+
+= 3.2 =
+1. Security: added capability and nonce checks to the analytics AJAX endpoints (first chart, countries table, cities table) to prevent unauthorized access to visitor data
+2. Security: hardened the analytics queries against SQL injection using prepared statements
+3. Fix: corrected visitor IP address not being recorded on new visits
+4. Sends a nonce with the admin analytics requests and bumps the admin script version
+5. credit: Artus KG
 
 = 3.1 =
 1. check compatibility issues

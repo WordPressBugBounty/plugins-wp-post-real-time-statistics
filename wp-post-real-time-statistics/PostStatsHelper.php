@@ -54,7 +54,7 @@
             wp_register_script ('poststats_js_jqplot_pieRenderer',            plugin_dir_url (__FILE__) . 'js/jqplot.pieRenderer.js', false, '1.0.8', true);
             wp_register_script ('poststats_js_jqplot_dateAxisRenderer',       plugin_dir_url (__FILE__) . 'js/jqplot.dateAxisRenderer.js', false, '1.0.8', true);
             wp_register_script ('poststats_js_jqplot_categoryAxisRenderer',   plugin_dir_url (__FILE__) . 'js/jqplot.categoryAxisRenderer.js', false, '1.0.8', true);
-            wp_register_script ('poststats_js_admin',                         plugin_dir_url (__FILE__) . 'js/main.js', false, '2.2', true);
+            wp_register_script ('poststats_js_admin',                         plugin_dir_url (__FILE__) . 'js/main.js', false, '3.2', true);
 
             wp_enqueue_style ('poststats_css_jqplot');
             wp_enqueue_style ('poststats_css_admin');
@@ -64,6 +64,7 @@
             <script type="application/javascript">
                 var POSTSTATS_PLUGIN_URL = "<?php echo plugin_dir_url (__FILE__); ?>";
                 var POSTSTATS_ADMIN_AJAX = "<?php echo admin_url ('admin-ajax.php'); ?>";
+                var POSTSTATS_NONCE = "<?php echo wp_create_nonce ('poststats_ajax'); ?>";
             </script>
             <?php
 
@@ -270,7 +271,7 @@
                     $wpdb->prefix . PostStatsHelper::TABLE,
                     [
                         'post_id'      => $post->ID,
-                        'ip'           => $ip,
+                        'ip'           => $vtr_ip_address,
                         'country'      => $country,
                         'country_code' => $countryCode,
                         'city'         => $city,
@@ -504,8 +505,7 @@
                 $visits = $wpdb->get_results (
                     "SELECT count(*) as visits_count, DATE(created_at) as visits_date " .
                     "FROM $table_name " .
-                    "WHERE created_at BETWEEN '" . $from . "' AND '" . $to . "' AND post_id='" . $data[ "post_id" ] . "' " .
-                    "GROUP BY visits_date"
+                    $wpdb->prepare("WHERE created_at BETWEEN %s AND %s AND post_id=%d GROUP BY visits_date", $from, $to, (int)$data["post_id"])
                 );
 
                 if (sizeof ($visits)) {
@@ -523,8 +523,7 @@
                 $visitors = $wpdb->get_results (
                     "SELECT count(distinct ip) as visitors_count, DATE(created_at) as visits_date " .
                     "FROM $table_name " .
-                    "WHERE created_at BETWEEN '" . $from . "' AND '" . $to . "' AND post_id='" . $data[ "post_id" ] . "' " .
-                    "GROUP BY visits_date"
+                    $wpdb->prepare("WHERE created_at BETWEEN %s AND %s AND post_id=%d GROUP BY visits_date", $from, $to, (int)$data["post_id"])
                 );
 
                 if (sizeof ($visitors)) {
@@ -566,9 +565,7 @@
                 $response_table = $wpdb->get_results (
                     "SELECT count(id) as visits_count, country, country_code " .
                     "FROM $table_name " .
-                    "WHERE created_at BETWEEN '" . $from . "' AND '" . $to . "' AND post_id='" . $data[ "post_id" ] . "' " .
-                    "GROUP BY country  " .
-                    "ORDER BY visits_count desc "
+                    $wpdb->prepare("WHERE created_at BETWEEN %s AND %s AND post_id=%d GROUP BY country ORDER BY visits_count desc ", $from, $to, (int)$data["post_id"])
                 );
 				
             } catch (Exception $e) {
@@ -578,10 +575,7 @@
                 $rows = $wpdb->get_results (
                     "SELECT count(*) as visits_count, country " .
                     "FROM $table_name " .
-                     "WHERE created_at BETWEEN '" . $from . "' AND '" . $to . "' AND post_id='" . $data[ "post_id" ] . "' " .
-                    "GROUP BY country " .
-                    "ORDER BY visits_count DESC " .
-                    "LIMIT 0,10"
+                    $wpdb->prepare("WHERE created_at BETWEEN %s AND %s AND post_id=%d GROUP BY country ORDER BY visits_count DESC LIMIT 0,10", $from, $to, (int)$data["post_id"])
                 );
 
                 if (sizeof ($rows)) {
@@ -625,8 +619,7 @@
                 $response_cities = $wpdb->get_results (
                     "SELECT * " .
                     "FROM $table_name " .
-                    "WHERE created_at BETWEEN '" . $from . "' AND '" . $to . "' AND post_id='" . $data[ "post_id" ] . "' AND country_code='" . $data[ 'country_code' ] . "' " .
-                    "ORDER BY created_at DESC"
+                    $wpdb->prepare("WHERE created_at BETWEEN %s AND %s AND post_id=%d AND country_code=%s ORDER BY created_at DESC", $from, $to, (int)$data["post_id"], (string)$data['country_code'])
                 );
 
                 if (sizeof ($response_cities)) {
